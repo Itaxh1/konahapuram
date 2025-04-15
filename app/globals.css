@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --chart-1: 25 95% 53%;
+    --chart-2: 262 83% 58%;
+    --chart-3: 120 75% 60%;
+    --chart-4: 200 95% 53%;
+    --chart-5: 330 95% 60%;
+  }
+
+  .dark {
+    /* Akatsuki theme - black background with red accents */
+    --background: 0 0% 10%; /* Dark black */
+    --foreground: 0 0% 98%; /* Off-white text */
+
+    --card: 0 0% 15%; /* Slightly lighter black for cards */
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 15%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 73% 41%; /* Akatsuki red */
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 20%; /* Dark gray */
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 0 73% 41%; /* Akatsuki red */
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 0 73% 41%; /* Akatsuki red */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Font classes for our Google fonts */
+.font-ninja {
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-weight: 700;
+}
+
+.font-body {
+  font-family: var(--font-inter), "Inter", sans-serif;
+}
+
+.font-heading {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-weight: 700;
+}
+
+body.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/* Akatsuki cloud pattern for dark mode */
+.dark .akatsuki-bg {
+  background-color: #0a0a0a;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 20 C 40 20, 50 30, 40 40 C 30 50, 10 40, 20 30 C 30 20, 30 10, 30 0' fill='none' stroke='%23c41e3a' stroke-width='2'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
+}
+
+/* Akatsuki red cloud decorative elements */
+.akatsuki-cloud {
+  position: relative;
+  display: inline-block;
+}
+
+.akatsuki-cloud::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #c41e3a;
+  border-radius: 50%;
+  opacity: 0.8;
+  z-index: -1;
+}
