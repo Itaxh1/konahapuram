@@ -135,12 +135,13 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Inspiration from the Naruto universe created by Masashi Kishimoto
 - Three.js and React Three Fiber communities for excellent documentation and examples
-- shadcn/ui for the beautiful UI components
+
 
 
 ## 📞 Contact
 
 Ashwin Kumar Uma Sankar - [ufoundashwin@gmail.com](mailto:ufoundashwin@gmail.com)
+Rutuja Anil Shingate - [rutujashingate2000@gmail.com](mailto:rutujashingate2000@gmail.com)
 
 Project Link: [https://github.com/Itaxh1/konahapuram](https://github.com/Itaxh1/konahapuram)
 
