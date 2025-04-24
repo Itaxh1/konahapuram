@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import dynamic from "next/dynamic"
 import {
-  ChevronRight,
   Sun,
   Moon,
   Github,
@@ -20,6 +19,7 @@ import {
   Award,
   Mail,
   Keyboard,
+  Play,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
@@ -572,6 +572,15 @@ function HeroSection({ isDayMode, toggleDayMode }) {
                 <Github size={14} className="sm:h-4 sm:w-4" />
                 <span>GitHub</span>
               </a>
+              <Link
+                href="/contact"
+                className={`inline-flex items-center gap-1 text-xs sm:text-sm ${
+                  isDayMode ? "text-gray-700 hover:text-orange-600" : "text-gray-300 hover:text-red-500"
+                }`}
+              >
+                <Mail size={14} className="sm:h-4 sm:w-4" />
+                <span>Contact</span>
+              </Link>
               <a
                 href="https://www.linkedin.com/in/ashwinkumar99/"
                 target="_blank"
@@ -584,7 +593,9 @@ function HeroSection({ isDayMode, toggleDayMode }) {
                 <span>LinkedIn</span>
               </a>
               <a
-                href="#"
+                href="https://github.com/Itaxh1/konahapuram/blob/main/public/SDE_Ashwin.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`inline-flex items-center gap-1 text-xs sm:text-sm ${
                   isDayMode ? "text-gray-700 hover:text-orange-600" : "text-gray-300 hover:text-red-500"
                 }`}
@@ -609,7 +620,7 @@ function HeroSection({ isDayMode, toggleDayMode }) {
                   isDayMode ? "bg-orange-600 hover:bg-orange-700" : "bg-red-800 hover:bg-red-900 border border-red-700"
                 } text-sm`}
               >
-                Explore Konahapuram <ChevronRight className="ml-1 h-4 w-4" />
+                Explore Konahapuram <Play className="ml-1 h-4 w-4" />
               </Button>
             </Link>
           </div>
@@ -629,7 +640,7 @@ function HeroSection({ isDayMode, toggleDayMode }) {
                 isDayMode ? "bg-orange-600 hover:bg-orange-700" : "bg-red-800 hover:bg-red-900 border border-red-700"
               } text-xs`}
             >
-              Explore Konahapuram <ChevronRight className="ml-1 h-3 w-3" />
+              Explore Konahapuram <Play className="ml-1 h-3 w-3" />
             </Button>
           </Link>
         </div>
@@ -1180,6 +1191,15 @@ function FooterContact({ isDayMode }) {
           <Github size={20} className="sm:h-6 sm:w-6" />
           <span>GitHub</span>
         </a>
+        <Link
+          href="/contact"
+          className={`inline-flex items-center gap-2 text-base sm:text-lg ${
+            isDayMode ? "text-gray-700 hover:text-orange-600" : "text-gray-300 hover:text-red-500"
+          }`}
+        >
+          <Mail size={20} className="sm:h-6 sm:w-6" />
+          <span>Contact</span>
+        </Link>
         <a
           href="https://www.linkedin.com/in/ashwinkumar99/"
           target="_blank"
@@ -1192,7 +1212,9 @@ function FooterContact({ isDayMode }) {
           <span>LinkedIn</span>
         </a>
         <a
-          href="#"
+          href="https://github.com/Itaxh1/konahapuram/blob/main/public/SDE_Ashwin.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
           className={`inline-flex items-center gap-2 text-base sm:text-lg ${
             isDayMode ? "text-gray-700 hover:text-orange-600" : "text-gray-300 hover:text-red-500"
           }`}
