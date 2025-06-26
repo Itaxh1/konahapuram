@@ -3,13 +3,14 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowLeft, Sun, Moon, Info, Keyboard, Mail } from "lucide-react"
+import { ArrowLeft, Sun, Moon, Info, Keyboard } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import dynamic from "next/dynamic"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import MiniMap from "@/components/mini-map"
 import { useMobile } from "@/hooks/use-mobile"
+import ContactButton from "@/components/contact-button"
 
 // Function to handle font loading errors
 function handleFontLoadingError() {
@@ -312,16 +313,12 @@ export default function VillagePage() {
           >
             {use3D ? "2D View" : "3D View"}
           </Button>
-          <Link href="/contact">
-            <Button
-              variant="outline"
-              size={isMobile ? "sm" : "default"}
-              className="flex items-center gap-1 bg-white/80 backdrop-blur-sm dark:bg-black/80 dark:border-red-900 dark:text-white"
-            >
-              <Mail className="h-3 w-3 md:h-4 md:w-4" />
-              {isMobile ? "Contact" : "Contact Me"}
-            </Button>
-          </Link>
+          <ContactButton
+            isDayMode={isDayMode}
+            variant="outline"
+            size={isMobile ? "sm" : "default"}
+            className="flex items-center gap-1 bg-white/80 backdrop-blur-sm dark:bg-black/80 dark:border-red-900 dark:text-white"
+          />
         </div>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 rounded-lg bg-white/80 px-2 py-1 shadow-lg backdrop-blur-sm dark:bg-black/80 dark:border-red-900">
