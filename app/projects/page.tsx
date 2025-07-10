@@ -1,5 +1,6 @@
 "use client"
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
@@ -162,6 +163,7 @@ export default function ProjectsPage() {
   }, [selectedCategory, selectedStatus, searchTerm])
 
   return (
+   
     <div className="bg-black text-green-400 font-mono min-h-screen">
       {/* Terminal Loading */}
       <AnimatePresence>
@@ -176,6 +178,8 @@ export default function ProjectsPage() {
               transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}
               className="text-green-400 text-xl"
             >
+               <SpeedInsights />
+              <Analytics />
               LOADING_PROJECTS.JSON...
             </motion.div>
           </motion.div>
