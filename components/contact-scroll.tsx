@@ -1,8 +1,10 @@
 "use client"
 
-import { useState, useRef } from "react"
+import type React from "react"
+
+import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, Send, Scroll } from "lucide-react"
+import { X, Send, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -11,44 +13,66 @@ import { Label } from "@/components/ui/label"
 interface ContactScrollProps {
   isOpen: boolean
   onClose: () => void
-  isDayMode?: boolean
 }
 
-export default function ContactScroll({ isOpen, onClose, isDayMode = true }: ContactScrollProps) {
-  const [formState, setFormState] = useState({
+export default function ContactScroll({ isOpen, onClose }: ContactScrollProps) {
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const formRef = useRef<HTMLFormElement>(null)
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null
+    message: string
+  }>({ type: null, message: "" })
 
-  const handleChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormState((prev) => ({ ...prev, [name]: value }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitStatus({ type: null, message: "" })
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          subject: "Contact from Naruto Portfolio - Village Contact Scroll",
+        }),
+      })
 
-    // In a real app, you would send the form data to your backend here
-    console.log("Form submitted:", formState)
+      const data = await response.json()
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    setFormState({ name: "", email: "", message: "" })
-  }
-
-  const resetForm = () => {
-    setIsSubmitted(false)
-    setFormState({ name: "", email: "", message: "" })
-    if (formRef.current) {
-      formRef.current.reset()
+      if (response.ok) {
+        setSubmitStatus({
+          type: "success",
+          message: "MESSAGE_TRANSMITTED | RESPONSE_INCOMING_24H",
+        })
+        setFormData({ name: "", email: "", message: "" })
+        setTimeout(() => {
+          onClose()
+        }, 2000)
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message: data.error || "TRANSMISSION_FAILED | RETRY_REQUIRED",
+        })
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message: "NETWORK_ERROR | CHECK_CONNECTION",
+      })
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -59,156 +83,117 @@ export default function ContactScroll({ isOpen, onClose, isDayMode = true }: Con
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           onClick={onClose}
         >
           <motion.div
-            initial={{ scale: 0.9, y: 20, opacity: 0 }}
-            animate={{ scale: 1, y: 0, opacity: 1 }}
-            exit={{ scale: 0.9, y: 20, opacity: 0 }}
+            initial={{ scale: 0.8, opacity: 0, y: 50 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.8, opacity: 0, y: 50 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className={`relative mx-4 max-h-[90vh] w-full max-w-md overflow-auto rounded-lg p-6 shadow-xl ${
-              isDayMode ? "bg-white" : "bg-gray-900 border border-red-900 text-white"
-            }`}
+            className="bg-black border-2 border-green-400 p-6 md:p-8 max-w-md w-full font-mono text-green-400 relative"
             onClick={(e) => e.stopPropagation()}
           >
-            <Button variant="ghost" size="icon" className="absolute right-2 top-2" onClick={onClose}>
-              <X className="h-4 w-4" />
-              <span className="sr-only">Close</span>
-            </Button>
+            {/* Close Button */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 text-green-600 hover:text-green-400 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
 
-            <div className="mb-4 flex justify-center">
-              <div
-                className={`flex h-14 w-14 items-center justify-center rounded-full ${
-                  isDayMode ? "bg-orange-500" : "bg-red-700"
-                }`}
-              >
-                <Scroll className="h-6 w-6 text-white" />
-              </div>
+            {/* Header */}
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-green-300 mb-2">CONTACT_SCROLL.SH</h2>
+              <div className="text-sm text-green-600">SECURE_TRANSMISSION_ACTIVE</div>
             </div>
 
-            <h2 className={`mb-2 text-center text-xl font-bold ${isDayMode ? "text-orange-600" : "text-red-600"}`}>
-              Send a Message Scroll
-            </h2>
-
-            <p className={`mb-6 text-center text-sm ${isDayMode ? "text-gray-600" : "text-gray-300"}`}>
-              Have a question or want to work together?
-            </p>
-
-            {isSubmitted ? (
-              <div
-                className={`rounded-lg p-4 text-center ${
-                  isDayMode ? "bg-green-50 text-green-800" : "bg-green-900/20 border border-green-700 text-green-300"
-                }`}
-              >
-                <h3 className="mb-2 font-bold">Message Scroll Sent!</h3>
-                <p className="mb-4 text-sm">Thank you for your message. I'll respond as soon as possible.</p>
-                <Button
-                  onClick={resetForm}
-                  className={
-                    isDayMode
-                      ? "bg-orange-600 hover:bg-orange-700"
-                      : "bg-red-800 hover:bg-red-900 border border-red-700"
-                  }
-                >
-                  Send Another Message
-                </Button>
-              </div>
-            ) : (
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="name" className={isDayMode ? "text-gray-700" : "text-gray-200"}>
-                    Your Name
-                  </Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formState.name}
-                    onChange={handleChange}
-                    placeholder="Naruto Uzumaki"
-                    required
-                    className={isDayMode ? "bg-white" : "bg-gray-800 border-gray-700 text-white"}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="email" className={isDayMode ? "text-gray-700" : "text-gray-200"}>
-                    Your Email
-                  </Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formState.email}
-                    onChange={handleChange}
-                    placeholder="naruto@konoha.com"
-                    required
-                    className={isDayMode ? "bg-white" : "bg-gray-800 border-gray-700 text-white"}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message" className={isDayMode ? "text-gray-700" : "text-gray-200"}>
-                    Your Message
-                  </Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formState.message}
-                    onChange={handleChange}
-                    placeholder="Write your message here..."
-                    required
-                    className={`min-h-[120px] ${isDayMode ? "bg-white" : "bg-gray-800 border-gray-700 text-white"}`}
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`w-full ${
-                    isDayMode
-                      ? "bg-orange-600 hover:bg-orange-700"
-                      : "bg-red-800 hover:bg-red-900 border border-red-700"
-                  }`}
-                >
-                  {isSubmitting ? (
-                    <span className="flex items-center gap-2">
-                      <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24">
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                          fill="none"
-                        />
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        />
-                      </svg>
-                      Sending...
-                    </span>
-                  ) : (
-                    <span className="flex items-center gap-2">
-                      <Send className="h-4 w-4" />
-                      Send Message
-                    </span>
-                  )}
-                </Button>
-              </form>
-            )}
-
-            {/* Decorative scroll ends */}
-            <div className="mt-6 flex justify-center">
-              <div className="relative h-4 w-32">
-                <div className={`absolute left-0 h-4 w-4 rounded-full ${isDayMode ? "bg-orange-500" : "bg-red-700"}`} />
-                <div
-                  className={`absolute right-0 h-4 w-4 rounded-full ${isDayMode ? "bg-orange-500" : "bg-red-700"}`}
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="scroll-name" className="text-green-400 text-sm">
+                  SENDER_NAME*
+                </Label>
+                <Input
+                  id="scroll-name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  className="bg-black border-green-800 text-green-400 focus:border-green-400 text-sm"
+                  placeholder="YOUR_NAME"
                 />
               </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="scroll-email" className="text-green-400 text-sm">
+                  EMAIL_ADDRESS*
+                </Label>
+                <Input
+                  id="scroll-email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className="bg-black border-green-800 text-green-400 focus:border-green-400 text-sm"
+                  placeholder="your.email@domain.com"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="scroll-message" className="text-green-400 text-sm">
+                  MESSAGE_CONTENT*
+                </Label>
+                <Textarea
+                  id="scroll-message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={4}
+                  className="bg-black border-green-800 text-green-400 focus:border-green-400 resize-none text-sm"
+                  placeholder="TYPE_MESSAGE_HERE..."
+                />
+              </div>
+
+              {/* Status Messages */}
+              {submitStatus.type && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`p-3 border text-xs ${
+                    submitStatus.type === "success"
+                      ? "border-green-400 text-green-300 bg-green-400/10"
+                      : "border-red-400 text-red-300 bg-red-400/10"
+                  }`}
+                >
+                  {submitStatus.message}
+                </motion.div>
+              )}
+
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-transparent border border-green-400 text-green-400 hover:bg-green-400 hover:text-black transition-all duration-300 disabled:opacity-50 text-sm"
+              >
+                {isSubmitting ? (
+                  <div className="flex items-center gap-2">
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    SENDING...
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <Send className="w-4 h-4" />
+                    TRANSMIT_MESSAGE
+                  </div>
+                )}
+              </Button>
+            </form>
+
+            {/* Footer */}
+            <div className="mt-4 pt-4 border-t border-green-800">
+              <div className="text-xs text-green-600 text-center">RESPONSE_TIME: {"<24H"} | ENCRYPTION: ENABLED</div>
             </div>
           </motion.div>
         </motion.div>
