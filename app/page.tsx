@@ -499,7 +499,7 @@ export default function HomePage() {
                           3D RESUME GAME [PC_ONLY]
                         </motion.button>
                       </Link>
-                     <Link href="#work">
+                     <Link href="https://www.ashxinkumar.me/projects">
                         <motion.button
                           whileHover={{ scale: 1.05, backgroundColor: "#16a34a" }}
                           whileTap={{ scale: 0.95 }}

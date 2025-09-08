@@ -8,8 +8,24 @@ import { Github, ExternalLink, ArrowLeft, Search, Star, Eye, GitFork } from "luc
 import { Input } from "@/components/ui/input"
 
 const projects = [
+    {
+    "id": 1,
+    "name": "CLAW_GAME_CREATOR_LLM",
+    "description": "CLAW Code is an AI-native, developer-first platform designed to supercharge 2D and 3D game development with Unity as the primary engine, Gwen as the customizable in-game UI toolkit, and an AI-native LLM powering real-time code generation and backend logic support. CLAW empowers game developers to generate, preview, and iterate on gameplay mechanics, UI flows, and backend logic — all with natural language prompts and live coding assistance.",
+    "category": "GAME_DEV",
+    "complexity": "ADVANCED",
+    "status": "ACTIVE",
+    "technologies": ["MONGODB", "NODE_JS", "LANGCHAIN", "REACT", "NEXT_JS", "PYTHON"],
+    "liveUrl": "http://claw.codes/",
+    "githubUrl": "https://github.com/Claw-Code/Claw-Game-Creator-LLM",
+    stats: { views: "1.1K", stars: 20, forks: 10 },
+    "timeline": "ONGOING_SINCE_JUL_23_2025",
+    "year": "2025",
+    "lastUpdated": "SEP_08_2025",
+    "highlights": ["AI_NATIVE_LLM", "LLM_BASED_ASSET_GENERATION", "PROCEDURAL_LEVEL_DESIGN", "INTERACTIVE_ENVIRONMENTS", "REAL_TIME_RENDERING"]
+  },
   {
-    id: 1,
+    id: 2,
     name: "EMERGENCY_EXIT_SYSTEM",
     description:
       "Real-time emergency management system with intelligent routing algorithms and automated alert systems for optimal emergency response coordination.",
@@ -19,14 +35,14 @@ const projects = [
     technologies: ["PYTHON", "FLASK", "GCP", "REAL_TIME", "ALGORITHMS"],
     liveUrl: "https://emergency-exit-system-654928681850.us-central1.run.app",
     githubUrl: "https://github.com/Itaxh1/Emergency-Exit-System",
-    stats: { views: "2.1K", stars: 12, forks: 4 },
+    stats: { views: "200", stars: 10, forks: 4 },
     timeline: "3_MONTHS",
     year: "2024",
     lastUpdated: "MAY_9",
     highlights: ["REAL_TIME_MONITORING", "AUTOMATED_ALERTS", "INTELLIGENT_ROUTING", "SCALABLE_ARCHITECTURE"],
   },
   {
-    id: 2,
+    id: 3,
     name: "TASKPILOT",
     description:
       "Intelligent task management system with workflow automation, progress tracking, and analytics for productivity optimization.",
@@ -43,7 +59,7 @@ const projects = [
     highlights: ["WORKFLOW_AUTOMATION", "PROGRESS_TRACKING", "ANALYTICS_DASHBOARD", "USER_INTERFACE"],
   },
   {
-    id: 3,
+    id: 4,
     name: "JOBTRACKER",
     description:
       "Modern job application tracking system with status management, interview scheduling, and comprehensive analytics dashboard.",
@@ -60,7 +76,7 @@ const projects = [
     highlights: ["APPLICATION_TRACKING", "INTERVIEW_SCHEDULING", "ANALYTICS_DASHBOARD", "TYPESCRIPT_ARCHITECTURE"],
   },
   {
-    id: 4,
+    id: 5,
     name: "DEEPSEEKER_AI",
     description:
       "RAG-based intelligent content retrieval system with vector database integration and advanced AI capabilities.",
@@ -77,7 +93,7 @@ const projects = [
     highlights: ["RAG_IMPLEMENTATION", "VECTOR_DATABASE", "AI_INTEGRATION", "CONTENT_RETRIEVAL"],
   },
   {
-    id: 5,
+    id: 6,
     name: "SCARR_FRAMEWORK",
     description:
       "Python optimization framework with multicore profiling capabilities for performance analysis and enhancement.",
@@ -94,7 +110,7 @@ const projects = [
     highlights: ["MULTICORE_PROFILING", "PERFORMANCE_OPTIMIZATION", "PYTHON_FRAMEWORK", "ANALYSIS_TOOLS"],
   },
   {
-    id: 6,
+    id: 7,
     name: "NARUTO_PORTFOLIO",
     description:
       "Interactive 3D portfolio experience built with Three.js, featuring immersive design and creative storytelling.",
