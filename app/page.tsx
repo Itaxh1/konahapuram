@@ -219,7 +219,7 @@ export default function HomePage() {
       title: "ASHWIN_KUMAR.DEV",
       subtitle: "FULL-STACK ENGINEER.",
       description: "PROBLEM SOLVER. CODE ARCHITECT.",
-      location: "OREGON, US",
+      location: "Arizona, US",
     },
     {
       id: "system",
@@ -480,13 +480,14 @@ export default function HomePage() {
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                      <Link href="#work">
+                     
+                        <Link href="http://claw.codes/">
                         <motion.button
                           whileHover={{ scale: 1.05, backgroundColor: "#16a34a" }}
                           whileTap={{ scale: 0.95 }}
                           className="w-full sm:w-auto px-6 py-3 border border-green-400 text-green-400 hover:text-black transition-all duration-300"
                         >
-                          VIEW_PROJECTS.SH
+                          CLAW LLM [Game Generation LLM]
                         </motion.button>
                       </Link>
                       <Link href="/village">
@@ -495,7 +496,16 @@ export default function HomePage() {
                           whileTap={{ scale: 0.95 }}
                           className="w-full sm:w-auto px-6 py-3 border border-green-400 text-green-400 hover:text-black transition-all duration-300"
                         >
-                          3D_GAME_BETA [PC_ONLY]
+                          3D RESUME GAME [PC_ONLY]
+                        </motion.button>
+                      </Link>
+                     <Link href="#work">
+                        <motion.button
+                          whileHover={{ scale: 1.05, backgroundColor: "#16a34a" }}
+                          whileTap={{ scale: 0.95 }}
+                          className="w-full sm:w-auto px-6 py-3 border border-green-400 text-green-400 hover:text-black transition-all duration-300"
+                        >
+                          VIEW_PROJECTS.SH
                         </motion.button>
                       </Link>
                     </div>
