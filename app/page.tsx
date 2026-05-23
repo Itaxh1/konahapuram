@@ -196,14 +196,14 @@ export default function HomePage() {
         response = "EMAIL: ufoundashwin@gmail.com | LINKEDIN: ashwinkumar99 | GITHUB: Itaxh1"
         break
       case "status":
-        response = "STATUS: ACTIVELY_SEEKING_OPPORTUNITIES | MASTER'S_COMPLETED | AVAILABLE_IMMEDIATELY"
+        response = "STATUS: CO-FOUNDER_@_HIRINGBAE | BUILDING_OZ | AI_EMPLOYEES_FOR_REAL_TEAMS"
         break
       case "clear":
         setTerminalHistory(["TERMINAL_CLEARED"])
         setTerminalInput("")
         return
       case "whoami":
-        response = "ASHWIN_KUMAR | SOFTWARE_ENGINEER | PROBLEM_SOLVER | CODE_ARCHITECT"
+        response = "ASHWIN_KUMAR | CO-FOUNDER_@_HIRINGBAE | BUILDING_OZ | CODE_ARCHITECT"
         break
       default:
         response = `COMMAND_NOT_FOUND: ${command} | TYPE 'help' FOR_AVAILABLE_COMMANDS`
@@ -307,10 +307,10 @@ export default function HomePage() {
   const timeline = [
     {
       year: "2025",
-      title: "ACTIVELY_SEEKING_OPPORTUNITIES",
-      company: "FULL_STACK_ENGINEER_ROLES",
-      type: "ONGOING",
-      description: "OPEN_TO_REMOTE | ON_SITE | HYBRID_POSITIONS",
+      title: "CO-FOUNDER",
+      company: "HIRINGBAE",
+      type: "CURRENT",
+      description: "BUILDING_OZ | AI_EMPLOYEES_FOR_END_TO_END_WORKFLOWS | INTEGRATIONS_ONBOARDING_SUPPORT",
     },
     {
       year: "2025",
@@ -461,11 +461,11 @@ export default function HomePage() {
                   >
                     <div className="text-green-600 text-sm space-y-2">
                       <div className="flex items-center gap-2">
-                        <span>CURRENT_STATUS: ACTIVELY_SEEKING_OPPORTUNITIES</span>
+                        <span>CURRENT_STATUS: CO-FOUNDER_@_HIRINGBAE</span>
                         <motion.div
                           animate={{ scale: [1, 1.2, 1] }}
                           transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                          className="w-2 h-2 bg-yellow-400 rounded-full"
+                          className="w-2 h-2 bg-green-400 rounded-full"
                         />
                       </div>
                       <div>LOCATION: {section.location}</div>
@@ -787,18 +787,18 @@ export default function HomePage() {
                   >
                     <div className="text-green-600 text-sm space-y-2">
                       <div className="flex items-center gap-2">
-                        <span>STATUS: ACTIVELY_SEEKING_FULL_STACK_ROLES</span>
+                        <span>STATUS: CO-FOUNDER_@_HIRINGBAE | BUILDING_OZ</span>
                         <motion.div
                           animate={{ scale: [1, 1.2, 1] }}
                           transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                          className="w-2 h-2 bg-yellow-400 rounded-full"
+                          className="w-2 h-2 bg-green-400 rounded-full"
                         />
                       </div>
                       <div>EDUCATION: MASTER_OF_ENGINEERING_CS | COMPLETED_MARCH_2025</div>
                       <div>INSTITUTION: OREGON_STATE_UNIVERSITY</div>
                       <div>GPA: 3.6/4.0 | RECENT_GRADUATE</div>
                       <div>EXPERIENCE: 2+_YEARS_PROFESSIONAL</div>
-                      <div>AVAILABILITY: IMMEDIATE_START</div>
+                      <div>CURRENT_FOCUS: AI_EMPLOYEES_FOR_END_TO_END_WORKFLOWS</div>
                     </div>
 
                     <div className="space-y-6">
@@ -834,19 +834,20 @@ export default function HomePage() {
                     <div className="space-y-4">
                       <div className="text-green-300">RECENT_EXPERIENCE:</div>
                       <div className="text-green-600 text-sm space-y-2">
+                        <div>CO-FOUNDER @ HIRINGBAE (2025-CURRENT) | BUILDING_OZ</div>
                         <div>WEB_DEVELOPER @ OREGON_STATE_UNIVERSITY (2024-COMPLETED)</div>
                         <div>ASSOCIATE_SOFTWARE_DEVELOPER @ AGROSPERITY_KIVI (2022-2023)</div>
                         <div>DATA_ANALYST_CONSULTANT @ GENWORKS_HEALTHCARE (2022)</div>
                       </div>
                     </div>
 
-                    <div className="border border-yellow-400 p-6 bg-yellow-400/5">
-                      <div className="text-yellow-400 text-sm font-bold mb-4">🎯 CURRENTLY_SEEKING:</div>
+                    <div className="border border-green-400 p-6 bg-green-400/5">
+                      <div className="text-green-400 text-sm font-bold mb-4">CURRENTLY_BUILDING:</div>
                       <div className="text-green-600 text-sm space-y-2">
-                        <div>• FULL_STACK_ENGINEER_POSITIONS</div>
-                        <div>• REMOTE | HYBRID | ON_SITE_OPPORTUNITIES</div>
-                        <div>• IMMEDIATE_AVAILABILITY</div>
-                        <div>• OPEN_TO_RELOCATION</div>
+                        <div>• HIRINGBAE: AI_EMPLOYEES_FOR_REAL_TEAMS</div>
+                        <div>• OZ: AI_COWORKER_FOR_INTEGRATIONS_ONBOARDING_SUPPORT</div>
+                        <div>• END_TO_END_WORKFLOW_AUTOMATION</div>
+                        <div>• HELPING_TEAMS_SHIP_FASTER</div>
                       </div>
                     </div>
                   </motion.div>
@@ -979,7 +980,7 @@ export default function HomePage() {
         <div className="text-green-600 text-sm space-y-2">
           <div>© 2025 ASHWIN_KUMAR.DEV | ALL_RIGHTS_RESERVED</div>
           <div>BUILT_WITH: NEXTJS + FRAMER_MOTION + GITHUB_API + PASSION</div>
-          <div>LAST_UPDATED: {new Date().toLocaleDateString()} | STATUS: SEEKING_OPPORTUNITIES</div>
+          <div>LAST_UPDATED: {new Date().toLocaleDateString()} | STATUS: BUILDING_@_HIRINGBAE</div>
         </div>
       </motion.footer>
     </div>
