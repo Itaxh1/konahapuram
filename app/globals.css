@@ -97,6 +97,10 @@
   font-weight: 700;
 }
 
+.font-serif {
+  font-family: var(--font-playfair), "Playfair Display", serif;
+}
+
 body.dragging {
   cursor: grabbing;
   user-select: none;
